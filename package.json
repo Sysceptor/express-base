@@ -1,0 +1,62 @@
+{
+  "name": "express-xm",
+  "version": "1.0.0",
+  "private": true,
+  "description": "express xm",
+  "homepage": "https://github.com/manojconcept/express-xm#readme",
+  "bugs": {
+    "url": "https://github.com/manojconcept/express-xm/issues"
+  },
+  "workspaces": [
+    "services/*",
+    "gateway",
+    "shared",
+    "data-sources",
+    "scripts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/manojconcept/express-xm.git"
+  },
+  "license": "ISC",
+  "author": "manojconcept",
+  "type": "module",
+  "main": "src/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node --watch --env.file=.env src/scripts",
+    "dev": "node --watch --trace-deprecation --env.file=.env src/scripts",
+    "dev:test": "node -r ts-node/register --watch --trace-deprecation --env-file=.env index.ts",
+    "auth": "<<<<<--------------------------/Auth Service/------------------------------------->>>>>",
+    "dev:auth": "tsx --watch --trace-deprecation --env-file=.env services/auth/src/index.ts",
+    "auth:mig:cre": "ts-node -r tsconfig-paths/register scripts/migration-create.ts services/auth/migrations",
+    "auth:mig:create": "ts-node -r tsconfig-paths/register scripts/migration-create.ts auth",
+    "auth:mig:gen": "ts-node -r tsconfig-paths/register scripts/migration-generate.ts auth",
+    "auth:mig:run": "ts-node -r tsconfig-paths/register scripts/migration-run.ts auth",
+    "Task": "<<<<<--------------------------/Task Service/------------------------------------->>>>>",
+    "dev:task": "node -r ts-node/register --watch --trace-deprecation --env-file=.env services/task/src/index.ts",
+    "gateway": "<<<<<--------------------------/Gateway Service/------------------------------------->>>>>",
+    "dev:gateway": "node -r ts-node/register --watch --trace-deprecation --env-file=.env services/gateway/src/index.ts"
+  },
+  "dependencies": {
+    "express": "^5.2.1",
+    "http-proxy-middleware": "^3.0.5",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.18.0",
+    "reflect-metadata": "^0.2.2",
+    "typeorm": "^0.3.28",
+    "typescript": "^5.9.3"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/http-proxy-middleware": "^0.19.3",
+    "@types/jsonwebtoken": "^9.0.10",
+    "@types/node": "^25.3.0",
+    "jest": "^30.2.0",
+    "prettier": "3.8.1",
+    "ts-node": "^10.9.2",
+    "tsconfig-paths": "^4.2.0",
+    "tsx": "^4.21.0"
+  }
+}
