@@ -22,6 +22,13 @@
   "author": "manojconcept",
   "type": "module",
   "main": "src/index.js",
+  "lint-staged": {
+    "*.{js,json,css,scss,html,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  },
+  "prepare": "husky",
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
@@ -36,9 +43,11 @@
     "Task": "<<<<<--------------------------/Task Service/------------------------------------->>>>>",
     "dev:task": "node -r ts-node/register --watch --trace-deprecation --env-file=.env services/task/src/index.ts",
     "gateway": "<<<<<--------------------------/Gateway Service/------------------------------------->>>>>",
-    "dev:gateway": "node -r ts-node/register --watch --trace-deprecation --env-file=.env gateway/index.ts"
+    "dev:gateway": "node -r ts-node/register --watch --trace-deprecation --env-file=.env gateway/index.ts",
+    "prepare": "husky"
   },
   "dependencies": {
+    "@trivago/prettier-plugin-sort-imports": "^6.0.2",
     "bcrypt": "^6.0.0",
     "class-transformer": "^0.5.1",
     "class-validator": "^0.14.3",
@@ -49,7 +58,8 @@
     "reflect-metadata": "^0.2.2",
     "typeorm": "^0.3.28",
     "typescript": "^5.9.3",
-    "ulid": "^3.0.2"
+    "ulid": "^3.0.2",
+    "zod": "^4.3.6"
   },
   "devDependencies": {
     "@types/bcrypt": "^6.0.0",
@@ -57,7 +67,9 @@
     "@types/http-proxy-middleware": "^0.19.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.3.0",
+    "husky": "^9.1.7",
     "jest": "^19.0.2",
+    "lint-staged": "^16.2.7",
     "prettier": "3.8.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",

@@ -1,7 +1,6 @@
 import { Response } from "express";
 
 export abstract class BaseController {
-
   protected ok(res: Response, data?: unknown): void {
     res.status(200).json(data);
   }

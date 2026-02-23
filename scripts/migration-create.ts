@@ -8,12 +8,19 @@ const service = args[0];
 let migrationName = args[1];
 
 if (!service) {
-  console.log(chalk.red("Usage: npm run mig:create <service>\nExample: npm run mig:create auth"));
+  console.log(
+    chalk.red(
+      "Usage: npm run mig:create <service>\nExample: npm run mig:create auth"
+    )
+  );
   process.exit(1);
 }
 
 if (!migrationName) {
-  const timestamp = new Date().toISOString().replace(/[-:TZ.]/g, "").slice(0, 14);
+  const timestamp = new Date()
+    .toISOString()
+    .replace(/[-:TZ.]/g, "")
+    .slice(0, 14);
   migrationName = `${service}Create${timestamp}`;
 }
 

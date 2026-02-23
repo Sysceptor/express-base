@@ -20,8 +20,18 @@ export abstract class OrmBaseConfig extends DataSource {
       synchronize: false,
       logging: process.env.NODE_ENV !== "production",
       migrationsRun: false,
-      entities: [path.join(__dirname, `../services/${serviceName}/db/entities/**/*{.ts,.js}`)],
-      migrations: [path.join(__dirname, `../services/${serviceName}/db/migrations/**/*{.ts,.js}`)],
+      entities: [
+        path.join(
+          __dirname,
+          `../services/${serviceName}/db/entities/**/*{.ts,.js}`
+        ),
+      ],
+      migrations: [
+        path.join(
+          __dirname,
+          `../services/${serviceName}/db/migrations/**/*{.ts,.js}`
+        ),
+      ],
       subscribers: [],
     });
   }
