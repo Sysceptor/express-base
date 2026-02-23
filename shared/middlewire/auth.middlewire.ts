@@ -29,8 +29,7 @@ export class AuthenticationMiddleware {
       if (!decoded) {
         return res.status(401).json({ message: "Unauthorized" });
       }
-
-      // attach user to request
+      
       (req as any).currentUser = decoded;
 
       next();

@@ -4,23 +4,18 @@ import path from "path";
 import chalk from "chalk";
 
 const args = process.argv.slice(2);
-
-// required
 const service = args[0];
-
-// optional
 let migrationName = args[1];
 
 if (!service) {
   console.log(
     chalk.red(
-      "❌ Usage: npm run mig:gen <service> [MigrationName]\nExample: npm run mig:gen users CreateUsersTable"
+      "Usage: npm run mig:gen <service> [MigrationName]\nExample: npm run mig:gen users CreateUsersTable"
     )
   );
   process.exit(1);
 }
 
-// ✅ default name if missing
 if (!migrationName) {
   const timestamp = new Date()
     .toISOString()
@@ -30,23 +25,20 @@ if (!migrationName) {
   migrationName = `${service}Auto${timestamp}`;
 }
 
-// paths
 const migrationsDir = path.resolve(
-  `services/${service}/migrations`
+  `services/${service}/db/migrations`
 );
 const dataSourcePath = `data-sources/${service}DataSource.ts`;
 
-// validate datasource exists
 if (!fs.existsSync(dataSourcePath)) {
   console.log(
-    chalk.red(`❌ DataSource not found for service: ${service}`)
+    chalk.red(`DataSource not found for service: ${service}`)
   );
   process.exit(1);
 }
 
-// ensure migrations folder exists
 if (!fs.existsSync(migrationsDir)) {
-  console.log(chalk.yellow("📁 Creating migrations folder..."));
+  console.log(chalk.yellow("Creating migrations folder..."));
   fs.mkdirSync(migrationsDir, { recursive: true });
 }
 
@@ -55,10 +47,10 @@ const fullPath = `${migrationsDir}/${migrationName}`;
 const command = `npx tsx  --env-file=.env ./node_modules/typeorm/cli.js migration:generate ${fullPath} -d ${dataSourcePath}`;
 
 console.log(
-  chalk.cyan(`🚀 Generating migration: ${migrationName}`)
+  chalk.cyan(`Generating migration: ${migrationName}`)
 );
 console.log(chalk.gray(command));
 
 execSync(command, { stdio: "inherit" });
 
-console.log(chalk.green("✅ Migration generated successfully!"));
+console.log(chalk.green("Migration generated successfully!"));
