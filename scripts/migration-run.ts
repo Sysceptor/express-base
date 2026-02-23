@@ -6,7 +6,11 @@ const args = process.argv.slice(2);
 const service = args[0];
 
 if (!service) {
-  console.log(chalk.red("Usage: npm run mig:run <service>\nExample: npm run mig:run users"));
+  console.log(
+    chalk.red(
+      "Usage: npm run mig:run <service>\nExample: npm run mig:run users"
+    )
+  );
   process.exit(1);
 }
 

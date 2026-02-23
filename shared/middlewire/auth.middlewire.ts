@@ -1,6 +1,5 @@
 import { NextFunction, Request, Response } from "express";
-import * as jwt from 'jsonwebtoken';
-
+import * as jwt from "jsonwebtoken";
 
 export class AuthenticationMiddleware {
   static verifyToken(
@@ -10,7 +9,7 @@ export class AuthenticationMiddleware {
   ): Response | void {
     try {
       const header = req.headers.authorization;
-      
+
       if (!header) {
         return res.status(401).json({ message: "Unauthorized" });
       }
@@ -21,15 +20,12 @@ export class AuthenticationMiddleware {
         return res.status(401).json({ message: "Unauthorized" });
       }
 
-      const decoded = jwt.verify(
-        token,
-        process.env.JWT_SECRET as string
-      );
+      const decoded = jwt.verify(token, process.env.JWT_SECRET as string);
 
       if (!decoded) {
         return res.status(401).json({ message: "Unauthorized" });
       }
-      
+
       (req as any).currentUser = decoded;
 
       next();

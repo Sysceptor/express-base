@@ -3,23 +3,22 @@ import {
   DeleteDateColumn,
   PrimaryColumn,
   UpdateDateColumn,
-  BeforeInsert
-} from 'typeorm';
+  BeforeInsert,
+} from "typeorm";
 
-import { ulid } from 'ulid';
-
+import { ulid } from "ulid";
 
 export class BaseEntity {
   @PrimaryColumn({ type: "varchar", length: 26 })
   declare id: string;
 
-  @CreateDateColumn({ type: 'timestamptz' })
+  @CreateDateColumn({ type: "timestamptz" })
   declare readonly createdAt: Date;
 
-  @UpdateDateColumn({ type: 'timestamptz' })
+  @UpdateDateColumn({ type: "timestamptz" })
   declare readonly updatedAt: Date;
 
-  @DeleteDateColumn({ type: 'timestamptz' })
+  @DeleteDateColumn({ type: "timestamptz" })
   declare deletedAt: Date;
 
   @BeforeInsert()

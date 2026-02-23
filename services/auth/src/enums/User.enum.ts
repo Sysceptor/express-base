@@ -6,7 +6,7 @@ export enum UserRole {
 
 export enum UserGender {
   MALE = "male",
-  FEMALE = "female",   
+  FEMALE = "female",
   OTHERS = "others",
   NONBINARY = "non-binary",
   PREFER_NOT_TO_SAY = "prefer not to say",

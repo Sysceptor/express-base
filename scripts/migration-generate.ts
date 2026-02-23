@@ -25,15 +25,11 @@ if (!migrationName) {
   migrationName = `${service}Auto${timestamp}`;
 }
 
-const migrationsDir = path.resolve(
-  `services/${service}/db/migrations`
-);
+const migrationsDir = path.resolve(`services/${service}/db/migrations`);
 const dataSourcePath = `data-sources/${service}DataSource.ts`;
 
 if (!fs.existsSync(dataSourcePath)) {
-  console.log(
-    chalk.red(`DataSource not found for service: ${service}`)
-  );
+  console.log(chalk.red(`DataSource not found for service: ${service}`));
   process.exit(1);
 }
 
@@ -46,9 +42,7 @@ const fullPath = `${migrationsDir}/${migrationName}`;
 
 const command = `npx tsx  --env-file=.env ./node_modules/typeorm/cli.js migration:generate ${fullPath} -d ${dataSourcePath}`;
 
-console.log(
-  chalk.cyan(`Generating migration: ${migrationName}`)
-);
+console.log(chalk.cyan(`Generating migration: ${migrationName}`));
 console.log(chalk.gray(command));
 
 execSync(command, { stdio: "inherit" });

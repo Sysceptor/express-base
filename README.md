@@ -8,8 +8,6 @@
 
 3. [Implementing DTOs, Mappers & the Repository Pattern using the Sequelize ORM [with Examples] - DDD w/ TypeScript](https://khalilstemmler.com/articles/typescript-domain-driven-design/repository-dto-mapper/)
 
-
-
 ### .ENV setup
 
 ```env
@@ -20,7 +18,7 @@ SECRET_KEY=''
 DB_URL_AUTH=postgres://postgres:<password>@localhost:5432/<database name>
 
 #developement/production
-NODE_ENV="developement" 
+NODE_ENV="developement"
 ```
 
 ### To generate secret key

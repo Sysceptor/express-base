@@ -6,7 +6,12 @@
     "outDir": "./dist",
     //---->TS import <----
     "allowImportingTsExtensions": true,
-    "noEmit":true,
+    "noEmit": true,
+
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitReturns": true,
 
     // Environment Settings
     // See also https://aka.ms/tsconfig/module
@@ -15,9 +20,9 @@
     // For nodejs:
     "lib": ["esnext"],
     "types": ["node"],
-     //---->TS Decorators <----
+    //---->TS Decorators <----
     "experimentalDecorators": true,
-     "moduleResolution": "NodeNext",
+    "moduleResolution": "NodeNext",
     // and npm install -D @types/node
 
     // Other Outputs
@@ -44,9 +49,8 @@
     "noUncheckedSideEffectImports": true,
     "moduleDetection": "force",
     "skipLibCheck": true,
-    "emitDecoratorMetadata": true,
- 
+    "emitDecoratorMetadata": true
   },
-  "include": ["services","shared", "gateway","data-sources"],
+  "include": ["services", "shared", "gateway", "data-sources"],
   "exclude": ["node_modules", "dist"]
 }
