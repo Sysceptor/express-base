@@ -32,7 +32,7 @@
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node --watch --env.file=.env src/scripts",
+    "start": "npm run typecheck && npm run lint && node dist/index.js",
     "dev": "node --watch --trace-deprecation --env.file=.env src/scripts",
     "dev:test": "node -r ts-node/register --watch --trace-deprecation --env-file=.env index.ts",
     "auth": "<<<<<--------------------------/Auth Service/------------------------------------->>>>>",
@@ -44,7 +44,9 @@
     "dev:task": "node -r ts-node/register --watch --trace-deprecation --env-file=.env services/task/src/index.ts",
     "gateway": "<<<<<--------------------------/Gateway Service/------------------------------------->>>>>",
     "dev:gateway": "node -r ts-node/register --watch --trace-deprecation --env-file=.env gateway/index.ts",
-    "prepare": "husky"
+    "prepare": "husky",
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint . --ext .ts"
   },
   "dependencies": {
     "@trivago/prettier-plugin-sort-imports": "^6.0.2",
