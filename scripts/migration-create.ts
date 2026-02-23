@@ -17,7 +17,7 @@ if (!migrationName) {
   migrationName = `${service}Create${timestamp}`;
 }
 
-const migrationsDir = path.resolve(`services/${service}/migrations`);
+const migrationsDir = path.resolve(`services/${service}/db/migrations`);
 
 if (!fs.existsSync(migrationsDir)) {
   console.log(chalk.yellow("📁 Creating migrations folder..."));
