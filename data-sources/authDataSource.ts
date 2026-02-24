@@ -1,5 +1,7 @@
-import { OrmBaseConfig } from "../shared/db/baseConfig.ts";
 import express, { type Application } from "express";
+
+import { OrmBaseConfig } from "../shared/db/baseConfig.ts";
+
 // import authRouter from "../services/auth/src/routes/auth.routes.ts";
 
 class AuthDataSource extends OrmBaseConfig {

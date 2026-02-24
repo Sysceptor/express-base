@@ -1,8 +1,7 @@
-import { DataSource } from "typeorm";
-
 import path from "path";
-import { fileURLToPath } from "url";
 import "reflect-metadata";
+import { DataSource } from "typeorm";
+import { fileURLToPath } from "url";
 
 export abstract class OrmBaseConfig extends DataSource {
   constructor(dbUrlEnv: string, label: string, metaUrl: string) {
@@ -23,13 +22,13 @@ export abstract class OrmBaseConfig extends DataSource {
       entities: [
         path.join(
           __dirname,
-          `../services/${serviceName}/db/entities/**/*{.ts,.js}`
+          `../apps/${serviceName}/db/entities/**/*{.ts,.js}`
         ),
       ],
       migrations: [
         path.join(
           __dirname,
-          `../services/${serviceName}/db/migrations/**/*{.ts,.js}`
+          `../apps/${serviceName}/db/migrations/**/*{.ts,.js}`
         ),
       ],
       subscribers: [],

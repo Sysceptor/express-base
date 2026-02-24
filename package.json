@@ -8,7 +8,7 @@
     "url": "https://github.com/manojconcept/express-xm/issues"
   },
   "workspaces": [
-    "services/*",
+    "apps/*",
     "gateway",
     "shared",
     "data-sources",
@@ -23,15 +23,12 @@
   "type": "module",
   "main": "src/index.js",
   "lint-staged": {
-    "*.{js,json,css,scss,html,md}": [
-      "prettier --write"
-    ]
+    "*.{ts,js,json,css,scss,html,md}": "prettier . --write"
   },
-  "prepare": "husky",
   "scripts": {
     "build": "tsc",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "npm run typecheck && npm run lint && node dist/index.js",
+    "start:check": "npm run typecheck && npm run lint && npx prettier . --write",
     "dev": "node --watch --trace-deprecation --env.file=.env src/scripts",
     "dev:test": "node -r ts-node/register --watch --trace-deprecation --env-file=.env index.ts",
     "auth": "<<<<<--------------------------/Auth Service/------------------------------------->>>>>",
@@ -68,10 +65,13 @@
     "@types/http-proxy-middleware": "^0.19.3",
     "@types/jsonwebtoken": "^9.0.10",
     "@types/node": "^25.3.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "eslint": "^10.0.2",
     "husky": "^9.1.7",
     "jest": "^19.0.2",
     "lint-staged": "^16.2.7",
-    "prettier": "3.8.1",
+    "prettier": "^3.8.1",
     "ts-node": "^10.9.2",
     "tsconfig-paths": "^4.2.0",
     "tsx": "^4.21.0"
