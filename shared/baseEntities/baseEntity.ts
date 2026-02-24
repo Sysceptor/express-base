@@ -1,11 +1,10 @@
 import {
+  BeforeInsert,
   CreateDateColumn,
   DeleteDateColumn,
   PrimaryColumn,
   UpdateDateColumn,
-  BeforeInsert,
 } from "typeorm";
-
 import { ulid } from "ulid";
 
 export class BaseEntity {

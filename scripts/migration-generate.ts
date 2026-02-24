@@ -1,7 +1,7 @@
+import chalk from "chalk";
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import chalk from "chalk";
 
 const args = process.argv.slice(2);
 const service = args[0];
@@ -25,7 +25,7 @@ if (!migrationName) {
   migrationName = `${service}Auto${timestamp}`;
 }
 
-const migrationsDir = path.resolve(`services/${service}/db/migrations`);
+const migrationsDir = path.resolve(`apps/${service}/db/migrations`);
 const dataSourcePath = `data-sources/${service}DataSource.ts`;
 
 if (!fs.existsSync(dataSourcePath)) {
