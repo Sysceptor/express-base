@@ -1,4 +1,5 @@
-import { Entity, Column } from "typeorm";
+import { Column, Entity } from "typeorm";
+
 import { BaseEntity } from "../../../../shared/baseEntities/baseEntity.ts";
 import { UserGender } from "../../src/enums/index.ts";
 

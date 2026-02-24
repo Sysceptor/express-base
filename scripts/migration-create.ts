@@ -1,7 +1,7 @@
+import chalk from "chalk";
 import { execSync } from "child_process";
 import fs from "fs";
 import path from "path";
-import chalk from "chalk";
 
 const args = process.argv.slice(2);
 const service = args[0];
@@ -24,7 +24,7 @@ if (!migrationName) {
   migrationName = `${service}Create${timestamp}`;
 }
 
-const migrationsDir = path.resolve(`services/${service}/db/migrations`);
+const migrationsDir = path.resolve(`apps/${service}/db/migrations`);
 
 if (!fs.existsSync(migrationsDir)) {
   console.log(chalk.yellow("📁 Creating migrations folder..."));
@@ -34,7 +34,7 @@ if (!fs.existsSync(migrationsDir)) {
 const fullPath = `${migrationsDir}/${migrationName}`;
 const command = `npx typeorm migration:create ${fullPath}`;
 
-console.log(chalk.cyan(`🚀 Creating migration: ${migrationName}`));
+console.log(chalk.cyan(`Creating migration: ${migrationName}`));
 console.log(chalk.gray(command));
 execSync(command, { stdio: "inherit" });
 console.log(chalk.green("✅ Migration created successfully!"));
