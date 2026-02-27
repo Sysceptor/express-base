@@ -19,6 +19,8 @@ DB_URL_AUTH=postgres://postgres:<password>@localhost:5432/<database name>
 
 #developement/production
 NODE_ENV="developement"
+
+BCRYPT_ROUNDS=
 ```
 
 ### To generate secret key
