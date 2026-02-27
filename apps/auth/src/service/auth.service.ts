@@ -1,28 +1,31 @@
-// import { AuthRepository } from "../repositories/auth.repository.ts";
+// import bcrypt from "bcrypt";
 // import jwt from "jsonwebtoken";
-// import bcrypt from 'bcrypt'
+// import { UserRepository } from "../repositories/user.repository.ts";
+// import { AuthSessionRepository } from "../repositories/authSession.repository.ts";
+// import { AbstractUserService } from "./abstract/auth.service.ts";
 
-// export class AuthService {
-//   private authRepository: AuthRepository;
-
-//   constructor() {
-//     this.authRepository = new AuthRepository();
-//   }
+// export class AuthService extends AbstractUserService{
+//   private userRepo = new UserRepository();
+//   private sessionRepo = new AuthSessionRepository();
 
 //   async register(email: string, password: string) {
-//     const existing = await this.authRepository.findByEmail(email);
+//     const existing = await this.userRepo.findByEmail(email);
 //     if (existing) {
 //       throw new Error("User already exists");
 //     }
 
-//     const hashedPassword = await bcrypt.hash(password, 10);
-//     const user = await this.authRepository.create({ email, password: hashedPassword });
+//     const passwordHash = await bcrypt.hash(password, 10);
 
-//     return { id: user.id, email: user.email };
+//     const user = await this.userRepo.create({
+//       email,
+//       password: passwordHash,
+//     });
+
+//     return user;
 //   }
 
 //   async login(email: string, password: string) {
-//     const user = await this.authRepository.findByEmail(email);
+//     const user = await this.userRepo.findByEmail(email);
 //     if (!user) {
 //       throw new Error("Invalid credentials");
 //     }
@@ -32,14 +35,27 @@
 //       throw new Error("Invalid credentials");
 //     }
 
-//     const token = jwt.sign(
-//       { id: user.id, email: user.email },
-//       process.env.JWT_SECRET as string,
+//     const accessToken = jwt.sign(
+//       { userId: user.id },
+//       process.env.JWT_ACCESS_SECRET!,
+//       { expiresIn: "15m" }
+//     );
+
+//     const refreshToken = jwt.sign(
+//       { userId: user.id },
+//       process.env.JWT_REFRESH_SECRET!,
 //       { expiresIn: "7d" }
 //     );
 
-//     return { token };
+//     await this.sessionRepo.createSession({
+//       user: user.id,
+//       refreshToken,
+//     });
+
+//     return {
+//       accessToken,
+//       refreshToken,
+//       user,
+//     };
 //   }
 // }
-
-//<<<<------------------- Need to fix ----------->

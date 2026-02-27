@@ -1,4 +1,3 @@
-// dto/auth.dto.ts
 export interface RegisterDto {
   email: string;
   password: string;

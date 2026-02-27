@@ -1,35 +1,45 @@
-// // controllers/auth.controller.ts
 // import { Request, Response } from "express";
+// import { AbstractUserService } from "../service/abstract/auth.service.ts";
 // import { BaseController } from "../../../../shared/controller/base.controller.ts";
-// // import { AuthService } from "../services/auth.service.ts";
 
-// class AuthController extends BaseController {
-//   private authService: AuthService;
-
-//   constructor() {
+// export class AuthController extends BaseController{
+//   constructor(private authService: AbstractUserService) {
 //     super();
-//     this.authService = new AuthService();
 //   }
 
-//   register = async (req: Request, res: Response): Promise<void> => {
+//   register = async (req: Request, res: Response) => {
 //     try {
 //       const { email, password } = req.body;
-//       const result = await this.authService.register(email, password);
-//       this.created(res, result);
-//     } catch (e) {
-//       this.serverError(res, "Internal server error");
+
+//       const user = await this.authService.register(email, password);
+
+//       res.status(201).json({
+//         success: true,
+//         data: user,
+//       });
+//     } catch (error: any) {
+//       res.status(400).json({
+//         success: false,
+//         message: error.message,
+//       });
 //     }
 //   };
 
-//   login = async (req: Request, res: Response): Promise<void> => {
+//   login = async (req: Request, res: Response) => {
 //     try {
 //       const { email, password } = req.body;
+
 //       const result = await this.authService.login(email, password);
-//       this.ok(res, result);
-//     } catch (e) {
-//       this.serverError(res, "Internal server error");
+
+//       res.status(200).json({
+//         success: true,
+//         data: result,
+//       });
+//     } catch (error: any) {
+//       res.status(401).json({
+//         success: false,
+//         message: error.message,
+//       });
 //     }
 //   };
 // }
-
-// export default new AuthController();
